@@ -1,0 +1,53 @@
+UPLOADING JENKINS ARTIFACTS TO AWS S3 BUCKET :-
+LOGIN TO AWS ACCOUNT 
+SEARCH S3 BUCKET 
+CLCICK ON CREATE BUCKET
+NAME = sdlcbukets3
+CREATE THE BUCKET 
+
+GO TO EC2 CONSOLE 
+CREATE AN INSTANCE 
+DOWNLOAD JENKINS FOLLOW THE BELOW POINTS ON UBUNTU ONLY:-
+      sudo apt update -y
+      sudo apt upgrade -y 
+      sudo apt install openjdk-17-jre -y
+      curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee \
+      /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+      echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+      https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+      /etc/apt/sources.list.d/jenkins.list > /dev/null
+      sudo apt-get update -y 
+      sudo apt-get install jenkins -y
+LOGIN TO JENKINS SERVER
+CREATE A JOB LIKE BEFORE WE DID 
+PULL THE FILE FROM GITHUB LIKE WE DID BEFORE
+ONCE ITS DONE GO TO MANAGE JENKINS 
+Manage plugins and select Available tab. 
+Find “S3 Plugin” and install it.
+RESTART YOUR JENKINS 
+ONCE ALL ONE GO TO MANAGE
+GO to Manage jenkins >> Configure System >> Amazon S3 Proiles click on ADD
+ON PROFILE NAME :- ENTER YOUR S3 BUCKET NAME
+FOR ACCESS KEY AND SECRET KEY FOLLOW THE BELOW STEPS:-
+GO TO YOUR AMAZONE CONSOLE 
+CLICK ON YOUR PROFILE LEFT SIDE TOP
+CLICK ON Security credentials
+CLICK ON Access keys
+CLICK ON CREATE Access keys
+NOW COPY ONE BY ONE AND PASTE IT 
+NOW GO TO OUR JOB OR PIPLINE CLICK ON CONFIGURE
+GO DOWN CLICK ON post build action
+SELECT ON Publish artifacts to S3 Bucket
+REMENBER THE IMP POINTS :-
+UNDER S3 PROFILE :- YOUR S3 BUCKET NAME
+UNDER SOURCE :- GIVE THE FILE NAME YOU WANT TO PUSH 
+STORAGE CLASS :- STANDARD
+BUCKET REGION :- US EAST OR AS PER YOUR PROFILE 
+SAVE AND APPLY 
+NOW BUILD THE PIPELINE 
+GO AND CHECK YOUR S3 BUCKET FILE HAS BEEN UPLODED.
+THANK YOU 
+PADTHE RAHO AGA BADTHE RAHO
+
+
+ 
